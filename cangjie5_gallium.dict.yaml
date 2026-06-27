@@ -1,0 +1,44 @@
+# encoding: utf-8
+#
+# 單字碼表《五倉世紀》來自 www.chinesecj.com
+#
+# 又：
+# 倉頡五代構詞碼碼表
+# 由惜緣兄製作
+# 佛振修訂於 2012-04-08
+#
+# License: GPL
+#
+# 說明：
+# 本碼表爲 Gallium v1（含符號修改）鍵盤佈局版本，
+# 碼元由 scripts/transform_gallium.py 自 cangjie5.* 自動轉換而來。
+#
+
+---
+name: "cangjie5_gallium"
+version: "1.0"
+sort: by_weight
+use_preset_vocabulary: true
+max_phrase_length: 7
+min_phrase_weight: 100
+columns:
+  - text
+  - code
+  - stem
+import_tables:
+  - cangjie5_gallium.base
+  - cangjie5_gallium.stem
+  - cangjie5_gallium.extended
+encoder:
+  exclude_patterns:
+    - '^q.*$'   # 難（QWERTY x -> Gallium q）
+    - '^x.*$'   # 符（QWERTY z -> Gallium x）
+  rules:
+    - length_equal: 2
+      formula: "AaAzBaBbBz"
+    - length_equal: 3
+      formula: "AaAzBaBzCz"
+    - length_in_range: [4, 10]
+      formula: "AaBzCaYzZz"
+  tail_anchor: "'"
+...
